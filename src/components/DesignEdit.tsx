@@ -115,30 +115,32 @@ const Bar = styled.div`
   }
 `;
 
-const SidebarToggleButton = styled.button<{ isActive: boolean }>`
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  background-color: ${({ isActive }) =>
-    isActive ? "#667eea" : "rgba(255, 255, 255, 0.2)"};
-  color: ${({ isActive }) => (isActive ? "#fff" : "rgba(255, 255, 255, 0.8)")};
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-left: 8px;
+// const SidebarToggleButton = styled.button<{ isActive: boolean }>`
+//   padding: 8px 16px;
+//   margin-top: 3px;
+//   margin-bottom: 3px;
+//   font-size: 14px;
+//   font-weight: 500;
+//   background-color: ${({ isActive }) =>
+//     isActive ? "#667eea" : "rgba(255, 255, 255, 0.2)"};
+//   color: ${({ isActive }) => (isActive ? "#fff" : "rgba(255, 255, 255, 0.8)")};
+//   border: 1px solid rgba(255, 255, 255, 0.3);
+//   border-radius: 6px;
+//   cursor: pointer;
+//   transition: all 0.3s ease;
+//   margin-left: 8px;
 
-  &:hover {
-    background-color: ${({ isActive }) =>
-      isActive ? "#5a67d8" : "rgba(255, 255, 255, 0.3)"};
-    transform: translateY(-1px);
-  }
+//   &:hover {
+//     background-color: ${({ isActive }) =>
+//       isActive ? "#5a67d8" : "rgba(255, 255, 255, 0.3)"};
+//     transform: translateY(-1px);
+//   }
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
-  }
-`;
+//   &:focus {
+//     outline: none;
+//     box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+//   }
+// `;
 
 const Overlay = styled.div`
   position: fixed;
@@ -278,7 +280,7 @@ const DesignEdit: React.FC = () => {
   const [designName, setDesignName] = useState("");
   const [currentDesignName, setCurrentDesignName] = useState("");
   const [isEditorReady, setIsEditorReady] = useState(false);
-  const [dockPosition, setDockPosition] = useState<"left" | "right">("left");
+  // const [dockPosition, setDockPosition] = useState<"left" | "right">("left");
 
   // Validate and sanitize design data
   const validateDesign = (design: any): any => {
@@ -576,23 +578,25 @@ const DesignEdit: React.FC = () => {
         </div>
       </Bar>
 
-      <div className="flex h-screen">
-        {/* Optional user control */}
-        <div className="absolute top-4 right-4 z-50 flex gap-2">
-          <button
-            className="px-3 py-1 bg-blue-600 text-white rounded"
-            onClick={() => setDockPosition("left")}
-          >
-            Sidebar Left
-          </button>
-          <button
-            className="px-3 py-1 bg-blue-600 text-white rounded"
+      {/* <div className="absolute top-4 right-4 z-50 flex gap-2 ">
+        {dockPosition === "left" && (
+          <SidebarToggleButton
+            isActive={true} // Active color because left is currently docked
             onClick={() => setDockPosition("right")}
           >
             Sidebar Right
-          </button>
-        </div>
-      </div>
+          </SidebarToggleButton>
+        )}
+
+        {dockPosition === "right" && (
+          <SidebarToggleButton
+            isActive={true} // Active color because right is currently docked
+            onClick={() => setDockPosition("left")}
+          >
+            Sidebar Left
+          </SidebarToggleButton>
+        )}
+      </div> */}
 
       {/* Email Editor */}
 
@@ -603,11 +607,6 @@ const DesignEdit: React.FC = () => {
           projectId: 12345,
           appearance: {
             theme: "modern_light",
-            panels: {
-              tools: {
-                dock: dockPosition, // Dynamic based on user choice
-              },
-            },
           },
         }}
         style={{ width: "100%", height: "100%" }}
